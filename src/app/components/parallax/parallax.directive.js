@@ -22,12 +22,30 @@
     return directive;
 
     function linkFunc(scope, el, attr, vm) {
-      var scene = angular.element(el).find('#scene');
+      var scenes = angular.element(el).find('#scene');
       var pScene = null;
       $timeout(function() {
-        pScene = scene.parallax();
-      });
+        /*angular.element(scene).find('img').each(function(key, image) {
+          var img = angular.element(this);
+          var transform = img.css('transform');
+          img.on('mouseenter', function(ev) {
+            img.css('transform', 'rotateZ(0) rotateY(360deg)');
+          }).on('mouseleave', function(ev) {
+            img.css('transform', transform);
+          })
+        });*/
+        pScene = scenes.parallax({
+          calibrateX: true,
+          calibrateY: true,
+          invertX: true,
+          invertY: true,
+          limitX: false,
+          limitY: false,
+          scalarX: 35,
+          scalarY: 10,
 
+        });
+      });
     }
     /** @ngInject */
     function ParallaxController() {
@@ -38,7 +56,7 @@
 
       function calcStyle(layer) {
         return {
-          "transform": "rotate(" + rotation(layer) + 'deg)',
+          "transform": "rotateZ(" + rotation(layer) + 'deg) rotateY(0deg)',
           "max-width": (layer.size || 100) + '%',
           "left": layer.left + '%',
           "bottom": ((-layer.top || -30)) + '%',

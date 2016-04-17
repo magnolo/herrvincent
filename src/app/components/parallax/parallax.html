@@ -2,7 +2,7 @@
   <div class="layer" data-depth="0.10">
     <div class="background"></div>
   </div>
-  <div class="layer" ng-repeat="layer in vm.layers" data-depth="{{ layer.depth || 0.5 }}">
-    <img ng-class="{'link': layer.url}" ng-src="{{ layer.image }}"  ng-style="vm.calcStyle(layer)"/>
+  <div class="layer fit" ng-repeat="layer in vm.layers" data-depth="{{ layer.depth || 0.5 }}">
+    <img ng-class="{'link': layer.url, 'shadowed': layer.shadow}" ng-src="{{ layer.image }}"  ng-style="vm.calcStyle(layer)"/>
   </div>
 </div>
