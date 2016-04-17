@@ -16,6 +16,7 @@ parallax{
   .layer{
     height:100%;
     width:100%;
+    max-width: 100%;
     pointer-events: none;
     img{
       max-height: 120%;
@@ -37,7 +38,17 @@ parallax{
       &:hover{
         //transform: rotateX(360deg) !important;
       }
-      
+      &.feature{
+          @media screen and(max-width: 600px){
+        max-width: 60% !important;
+      }
+      }
+      &.hide-on{
+        @media screen and(max-width: 600px){
+          display: none;
+        }
+
+      }
     }
     &.fit{
       @media screen and(min-width: 960px){
